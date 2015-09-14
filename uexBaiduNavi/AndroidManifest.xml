@@ -26,7 +26,7 @@
         android:name="com.baidu.location.f"
         android:enabled="true"
         android:process=":remote" />
-    <activity android:name=".BNavigatorActivity"
+    <activity android:name="org.zywx.wbpalmstar.widgetone.uexbaidunavi.BNavigatorActivity"
               android:theme="@style/browser_main_theme"
               android:configChanges="orientation|screenSize|keyboard|keyboardHidden"/>
 </manifest>
