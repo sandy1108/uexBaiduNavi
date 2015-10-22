@@ -128,7 +128,7 @@ public class EUExBaiduNavi extends EUExBase {
 			JSONObject jsonObject = new JSONObject(json);
 			startAddr = jsonObject.optString("startAddr");
 			endAddr = jsonObject.optString("endAddr");
-			mode = jsonObject.optInt("route_mode", 1);
+			mode = jsonObject.optInt("mode", 1);
 			JSONArray startArray = jsonObject.optJSONArray("startNode");
 			if (startArray != null) {
 				startNode.set(startArray.getDouble(0), startArray.getDouble(1));
@@ -157,7 +157,8 @@ public class EUExBaiduNavi extends EUExBase {
         //起点
         BNRoutePlanNode startNode = new BNRoutePlanNode(sPoint.x,sPoint.y, sAddr,null, BNRoutePlanNode.CoordinateType.GCJ02);
         //终点
-        BNRoutePlanNode endNode = new BNRoutePlanNode(ePoint.x,sPoint.y,eAddr,null,BNRoutePlanNode.CoordinateType.GCJ02);
+        BNRoutePlanNode endNode = new BNRoutePlanNode(ePoint.x,ePoint.y,eAddr,null,BNRoutePlanNode.CoordinateType
+                .GCJ02);
         //将起终点添加到nodeList
         ArrayList<BNRoutePlanNode> nodeList = new ArrayList<BNRoutePlanNode>();
         nodeList.add(startNode);
