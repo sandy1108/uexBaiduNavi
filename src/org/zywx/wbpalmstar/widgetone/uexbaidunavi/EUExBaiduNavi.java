@@ -125,19 +125,19 @@ public class EUExBaiduNavi extends EUExBase {
         String startAddr = null;
         String endAddr = null;
         try {
-            JSONObject jsonObject = new JSONObject(json);
-            startAddr=jsonObject.getString("startAddr");
-            endAddr=jsonObject.getString("endAddr");
-            mode=jsonObject.optInt("route_mode",1);
-            JSONArray startArray=jsonObject.getJSONArray("startNode");
-            if (startAddr!=null){
-                startNode.set(startArray.getDouble(0),startArray.getDouble(1));
-            }
-            JSONArray endArray=jsonObject.getJSONArray("endNode");
-            if (endArray!=null){
-                endNode.set(endArray.getDouble(0),endArray.getDouble(1));
-            }
-            JSONArray throughNodeArray=jsonObject.getJSONArray("throughNodes");
+			JSONObject jsonObject = new JSONObject(json);
+			startAddr = jsonObject.optString("startAddr");
+			endAddr = jsonObject.optString("endAddr");
+			mode = jsonObject.optInt("mode", 1);
+			JSONArray startArray = jsonObject.optJSONArray("startNode");
+			if (startArray != null) {
+				startNode.set(startArray.getDouble(0), startArray.getDouble(1));
+			}
+			JSONArray endArray = jsonObject.optJSONArray("endNode");
+			if (endArray != null) {
+				endNode.set(endArray.getDouble(0), endArray.getDouble(1));
+			}
+			JSONArray throughNodeArray = jsonObject.optJSONArray("throughNodes");
             if (throughNodeArray!=null){
                 throughNodes=new ArrayList<DoublePoint>();
                 for (int i=0;i<throughNodeArray.length();i++){
@@ -157,7 +157,8 @@ public class EUExBaiduNavi extends EUExBase {
         //起点
         BNRoutePlanNode startNode = new BNRoutePlanNode(sPoint.x,sPoint.y, sAddr,null, BNRoutePlanNode.CoordinateType.GCJ02);
         //终点
-        BNRoutePlanNode endNode = new BNRoutePlanNode(ePoint.x,sPoint.y,eAddr,null,BNRoutePlanNode.CoordinateType.GCJ02);
+        BNRoutePlanNode endNode = new BNRoutePlanNode(ePoint.x,ePoint.y,eAddr,null,BNRoutePlanNode.CoordinateType
+                .GCJ02);
         //将起终点添加到nodeList
         ArrayList<BNRoutePlanNode> nodeList = new ArrayList<BNRoutePlanNode>();
         nodeList.add(startNode);
