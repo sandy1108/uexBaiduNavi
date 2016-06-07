@@ -2,24 +2,14 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile files('libs/BaiduNaviSDK_2.0.jar')
 }
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'appcandevelop'
-            keyPassword '3g2win.com'
-            storeFile file('AppcanDevelop.keystore')
-            storePassword '3g2win.com'
-        }
-    }
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0"
-    defaultConfig {
-        // 应用的包名
-        applicationId "org.zywx.wbpalmstar.widgetone.uexbaidumap"
-        signingConfig signingConfigs.config
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
     }
     sourceSets {
         main {
@@ -30,7 +20,7 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
-            jniLibs.srcDirs = ['libs']
+            jniLibs.srcDirs=['libs']
         }
 
         // Move the tests to tests/java, tests/res, etc...
@@ -44,12 +34,5 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
-    }
-    productFlavors {
-    }
-    buildTypes {
-        debug {
-            signingConfig signingConfigs.config
-        }
     }
 }

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
-	<plugin
-        className="org.zywx.wbpalmstar.widgetone.uexbaidunavi.EUExBaiduNavi" uexName="uexBaiduNavi" >
-        <method name="init"/>
-        <method name="startRoutePlan"/>
-        <method name="startNavi"/>
-        <method name="onExitNavi"/>
-        <method name="exitNavi"/>
+
+    <plugin
+        className="org.zywx.wbpalmstar.plugin.uexbaidunavi.EUExBaiduNavi"
+        uexName="uexBaiduNavi" >
+        <method name="init" />
+        <method name="startRoutePlan" />
+        <method name="startNavi" />
+        <method name="exitNavi" />
     </plugin>
+
 </uexplugins>

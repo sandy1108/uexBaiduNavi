@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
 
+    <!-- uexBaiduNavi -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -16,17 +17,26 @@
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 摄影机 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- uexBaiduNavi -->
+
+    <!-- 增加百度LBS密钥，将下面的key值修改为在LBS开放平台申请的AK -->
     <meta-data
         android:name="com.baidu.lbsapi.API_KEY"
-        android:value="$uexBaiduNavi_ApiKey$"/>
+        android:value="$uexBaiduMap_APIKey$" />
 
+    <!-- 定位用的service -->
     <service
         android:name="com.baidu.location.f"
         android:enabled="true"
         android:process=":remote" />
-    <activity android:name="org.zywx.wbpalmstar.widgetone.uexbaidunavi.BNavigatorActivity"
-              android:theme="@style/browser_main_theme"
-              android:configChanges="orientation|screenSize|keyboard|keyboardHidden"/>
+
+    <!-- 原生导航Activity，须用绝对路径 -->
+    <activity
+        android:name="org.zywx.wbpalmstar.plugin.uexbaidunavi.BNavigatorActivity"
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+    </activity>
+
 </manifest>
