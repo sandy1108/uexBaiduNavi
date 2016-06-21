@@ -10,24 +10,24 @@
 
 	//回调
 	window.uexOnload = function(type) {
-		
+
 		// 初始化回调
 		uexBaiduNavi.cbInit = function(data) {
 			alert("------cbInit------\n" + data);
 		}
-		
+
 		// 开始路径规划回调
 		uexBaiduNavi.cbStartRoutePlan = function(data) {
 			alert("------cbStartRoutePlan------\n" + data);
 		}
-		
+
 		// 退出导航的监听方法
 		uexBaiduNavi.onExitNavi = function(data) {
 			alert("------onExitNavi------\n" + data);
 		}
-		
+
 	}
-	
+
 	// 开始路径规划
 	function startRoutePlan() {
 		var params = {
@@ -39,9 +39,16 @@
 			endAddr : "北京天安门",
 		};
 		var data = JSON.stringify(params);
-		uexBaiduNavi.startRoutePlan(data);
+		uexBaiduNavi.startRoutePlan(data,function(info){
+			alert("route:\n"+JSON.stringify(info));
+		});
 	}
-	
+
+	function init(){
+		uexBaiduNavi.init(null,function(info){
+			alert("init :\n"+JSON.stringify(info));
+		});
+	}
 </script>
 </head>
 
@@ -49,9 +56,9 @@
 	<div class="tit">uexBaiduNavi</div>
 	<div class="conbor">
 		<div class="consj">
-		
+
 			<span>init</span>
-			<input class="btn" type="button" value="初始化" onclick="uexBaiduNavi.init()" /><br /> <br />
+			<input class="btn" type="button" value="初始化" onclick="init()" /><br /> <br />
 
 			<span>startRoutePlan</span>
 			<input class="btn" type="button" value="开始路径规划" onclick="startRoutePlan()" /><br /> <br />
