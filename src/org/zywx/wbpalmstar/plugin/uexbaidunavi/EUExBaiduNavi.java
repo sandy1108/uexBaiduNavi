@@ -150,7 +150,6 @@ public class EUExBaiduNavi extends EUExBase {
                 } else {
                     isKeyCorrect = false;
                     BDebug.i("key校验失败, " + msg);
-                    Toast.makeText(mContext, "key校验失败, " + msg, Toast.LENGTH_LONG).show();
                 }
             }
 
