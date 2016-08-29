@@ -169,11 +169,11 @@ public class EUExBaiduNavi extends EUExBase {
                 BNaviSettingManager.setRealRoadCondition(BNaviSettingManager.RealRoadCondition.NAVI_ITS_ON);
 
                 if (isKeyCorrect) {
-                    cbInit(true,finalCallbackId);// 只有当key配置正确且引擎也初始化完成后才回调cbInit = true
+                    cbInit(true,finalCallbackId,null);// 只有当key配置正确且引擎也初始化完成后才回调cbInit = true
                 } else {
                     BDebug.i("key校验失败, " + keyErrMsg);
                     Toast.makeText(mContext, "key校验失败, " + keyErrMsg, Toast.LENGTH_LONG).show();
-                    cbInit(false,finalCallbackId);
+                    cbInit(false,finalCallbackId,"key校验失败, "+keyErrMsg);
                 }
 
             }
@@ -186,7 +186,7 @@ public class EUExBaiduNavi extends EUExBase {
             @Override
             public void initFailed() {
                 BDebug.i("百度导航引擎初始化失败");
-                cbInit(false, finalCallbackId);
+                cbInit(false, finalCallbackId,"百度导航引擎初始化失败");
             }
 
         }, null, ttsHandler, null);
@@ -197,7 +197,7 @@ public class EUExBaiduNavi extends EUExBase {
      *
      * @param flag
      */
-    private void cbInit(boolean flag,int callbackId) {
+    private void cbInit(boolean flag,int callbackId,String error) {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -205,7 +205,7 @@ public class EUExBaiduNavi extends EUExBase {
         } catch (JSONException e) {
         }
         if(callbackId!=-1){
-            callbackToJs(callbackId,false,jsonObject);
+            callbackToJs(callbackId,false,flag?0:1,error);
         }else{
             jsCallback(CB_INIT, jsonObject.toString());
         }
@@ -309,7 +309,7 @@ public class EUExBaiduNavi extends EUExBase {
             e.printStackTrace();
         }
         if(callbackId!=-1){
-            callbackToJs(callbackId,false,jsonObject);
+            callbackToJs(callbackId,false,resultCode==RESULT_CODE_START_ROUTE_PLAN_SUCCESS?0:errorInfo);
         }else{
             jsCallback(CB_START_ROUTE_PLAN, jsonObject.toString());
         }
