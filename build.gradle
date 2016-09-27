@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -68,15 +68,17 @@ android {
         release.setRoot('build-types/release')
     }
     defaultConfig {
-        applicationId 'org.zywx.navi'
+        applicationId 'org.zywx.wbpalmstar.widgetone.uexbaidunavi'
         signingConfig signingConfigs.config
         minSdkVersion 14
+        targetSdkVersion 14
     }
     productFlavors {
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.config
+            debuggable true
         }
         release {
             signingConfig signingConfigs.config

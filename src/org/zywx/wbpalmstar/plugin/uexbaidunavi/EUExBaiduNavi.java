@@ -141,15 +141,13 @@ public class EUExBaiduNavi extends EUExBase {
 
             @Override
             public void onAuthResult(int status, String msg) {
-
                 keyErrMsg = msg;
 
                 if (0 == status) {
                     isKeyCorrect = true;
-                    BDebug.i("key校验成功!");
                 } else {
                     isKeyCorrect = false;
-                    BDebug.i("key校验失败, " + msg);
+                    BDebug.e(msg);
                 }
             }
 
@@ -167,15 +165,7 @@ public class EUExBaiduNavi extends EUExBase {
                 BNaviSettingManager.setVoiceMode(BNaviSettingManager.VoiceMode.Veteran);
                 BNaviSettingManager.setPowerSaveMode(BNaviSettingManager.PowerSaveMode.DISABLE_MODE);
                 BNaviSettingManager.setRealRoadCondition(BNaviSettingManager.RealRoadCondition.NAVI_ITS_ON);
-
-                if (isKeyCorrect) {
-                    cbInit(true,finalCallbackId,null);// 只有当key配置正确且引擎也初始化完成后才回调cbInit = true
-                } else {
-                    BDebug.i("key校验失败, " + keyErrMsg);
-                    Toast.makeText(mContext, "key校验失败, " + keyErrMsg, Toast.LENGTH_LONG).show();
-                    cbInit(false,finalCallbackId,"key校验失败, "+keyErrMsg);
-                }
-
+                cbInit(true,finalCallbackId,null);//直接回调,第二次init不会走onAuthResult
             }
 
             @Override
