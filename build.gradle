@@ -1,8 +1,31 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
 apply plugin: 'com.android.application'
 
+
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile files('libs/BaiduNaviSDK_2.0.jar')
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile 'org.appcan:engine:+:systemRelease@aar'
+}
+
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url 'https://raw.githubusercontent.com/android-plugin/mvn-repo/master/'
+    }
 }
 
 android {
@@ -14,12 +37,11 @@ android {
             storePassword '3g2win.com'
         }
     }
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0"
-    defaultConfig {
-        // 应用的包名
-        applicationId "org.zywx.wbpalmstar.widgetone.uexbaidumap"
-        signingConfig signingConfigs.config
+    compileSdkVersion 21
+    buildToolsVersion "23.0.2"
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
     }
     sourceSets {
         main {
@@ -45,11 +67,23 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+    defaultConfig {
+        applicationId 'org.zywx.wbpalmstar.widgetone.uexbaidunavi'
+        signingConfig signingConfigs.config
+        minSdkVersion 14
+        targetSdkVersion 14
+    }
     productFlavors {
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.config
+            debuggable true
+        }
+        release {
+            signingConfig signingConfigs.config
         }
     }
 }
+
+apply from: "https://raw.githubusercontent.com/android-plugin/gradle-plugin/master/buildPlugin.gradle"
